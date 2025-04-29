@@ -1,0 +1,102 @@
+INSERT INTO professors (ssn, name, address, telephone, sex, title, salary, degrees)
+VALUES
+  ('111223333', 'Dr. Alice Kim', '1 Faculty Rd, Campus, CA', '555-0001', 'F', 'Professor', 110000.00, 'Ph.D. CS'),
+  ('222334444', 'Dr. Bob Lee', '2 Faculty Rd, Campus, CA', '555-0002', 'M', 'Associate Professor', 98000.00, 'Ph.D. Theater'),
+  ('333445555', 'Dr. Carol Smith', '3 Faculty Rd, Campus, CA', '555-0003', 'F', 'Professor', 120000.00, 'Ph.D. SE'),
+  ('444556666', 'Dr. David Zhao', '4 Faculty Rd, Campus, CA', '555-0004', 'M', 'Assistant Professor', 95000.00, 'Ph.D. AE'),
+  ('555667777', 'Dr. Erin Taylor', '5 Faculty Rd, Campus, CA', '555-0005', 'F', 'Professor', 115000.00, 'Ph.D. Psychology'),
+  ('666778888', 'Dr. Frank Lin', '6 Faculty Rd, Campus, CA', '555-0006', 'M', 'Professor', 105000.00, 'Ph.D. Biology'),
+  ('777889999', 'Dr. Grace Wu', '7 Faculty Rd, Campus, CA', '555-0007', 'F', 'Professor', 112000.00, 'Ph.D. Dance'),
+  ('888990000', 'Dr. Henry Tran', '8 Faculty Rd, Campus, CA', '555-0008', 'M', 'Associate Professor', 99000.00, 'Ph.D. ME'),
+  ('999001111', 'Dr. Irene Fox', '9 Faculty Rd, Campus, CA', '555-0009', 'F', 'Professor', 118000.00, 'Ph.D. Child Development'),
+  ('000112222', 'Dr. Jack Park', '10 Faculty Rd, Campus, CA', '555-0010', 'M', 'Professor', 113000.00, 'Ph.D. Business');
+
+--Insert departments
+INSERT INTO departments (name, telephone, office_location, chairperson_ssn)
+VALUES
+    ('Computer Science', '555-1010', 'CS101', '111223333'),
+    ('Theater', '555-2020', 'TH202', '222334444'),
+    ('Software Engineering', '555-3030', 'SE303', '333445555'),
+    ('Aerospace Engineering', '555-4040', 'E304', '444556666'),
+    ('Psychology', '555-5050', 'PSY101', '555667777'),
+    ('Biology', '555-6060', 'MH230', '666778888'),
+    ('Dance', '555-7070', 'CPAC100', '777889999'),
+    ('Mechanical Engineering', '555-8080', 'E101', '888990000'),
+    ('Child Development', '555-9090', 'HUM254', '999001111'),
+    ('Business', '555-1011', 'BU101', '000112222');
+
+-- Insert students
+INSERT INTO students (student_id, first_name, last_name, address, telephone, major_department_id)
+VALUES
+    ('S001', 'Jordan', 'Mo', '123 Main St, City, CA', '555-1234', 1),  -- Major: Computer Science
+    ('S002', 'Jordan', 'Be', '456 Oak St, City, CA', '555-5678', 2),  -- Major: Theater
+    ('S003', 'Keigo', 'No', '789 Pine St, City, CA', '555-8765', 3),  -- Major: Software Engineering
+    ('S004', 'Damon', 'Ca', '101 Maple St, City, CA', '555-4321', 1),  -- Major: Computer Science
+    ('S005', 'Josiah', 'Re', '202 Birch St, City, CA', '555-9876', 4),  -- Major: Aerospace Engineering
+    ('S006', 'Emma', 'Aq', '303 Cedar St, City, CA', '555-6543', 5),  -- Major: Psychology
+    ('S007', 'Maya', 'La', '404 Elm St, City, CA', '555-1122', 5),  -- Major: Psychology
+    ('S008', 'Carly', 'Pi', '505 Fir St, City, CA', '555-3344', 6),  -- Major: Biology
+    ('S009', 'Mary Kate', 'Ba', '606 Pine St, City, CA', '555-2233', 7),  -- Major: Dance
+    ('S010', 'Josiah', 'Re', '707 Cedar St, City, CA', '555-6677', 4),  -- Major: Aerospace Engineering
+    ('S011', 'Evan', 'St', '808 Oak St, City, CA', '555-4455', 8),  -- Major: Mechanical Engineering
+    ('S012', 'Annie', 'Na', '909 Birch St, City, CA', '555-5566', 9),  -- Major: Child Development
+    ('S013', 'Amber', 'Ga', '101 Pine St, City, CA', '555-6677', 5),  -- Major: Psychology
+    ('S014', 'Gabe', 'Gu', '202 Oak St, City, CA', '555-7788', 10),  -- Major: Business
+    ('S015', 'Kylie', 'Da', '303 Willow St, City, CA', '555-8899', 10);  -- Major: Business
+
+-- Insert courses
+INSERT INTO courses (title, textbook, units, department_id)
+VALUES
+  ('Introduction to Programming', 'Starting Out with Python, 5th Edition', 3, 1),     -- CS Department
+  ('Data Structures', 'Data Structures and Algorithms in C++, 4th Edition', 4, 1),    -- CS Department
+  ('Acting Fundamentals', 'The Actor’s Art and Craft', 2, 2),                         -- Theater Department
+  ('Stage Design', 'Scene Design and Stage Lighting, 10th Edition', 3, 2);            -- Theater Department
+
+-- Insert sections
+INSERT INTO sections (course_id, section_number, classroom, num_seats, meeting_days, start_time, end_time, professor_ssn)
+VALUES
+  (1, 1, 'CS101A', 30, 'MWF', '09:00:00', '09:50:00', '111223333'), -- Intro to Programming - Dr. Alice Kim
+  (1, 2, 'CS102B', 25, 'TTh', '11:00:00', '12:15:00', '111223333'), -- Intro to Programming - Dr. Alice Kim
+
+  (2, 1, 'CS201', 35, 'MWF', '10:00:00', '10:50:00', '333445555'),  -- Data Structures - Dr. Carol Smith
+
+  (3, 1, 'TH101', 20, 'TTh', '13:00:00', '14:15:00', '222334444'),  -- Acting Fundamentals - Dr. Bob Lee
+  (3, 2, 'TH102', 20, 'MW', '15:00:00', '16:15:00', '222334444'),   -- Acting Fundamentals - Dr. Bob Lee
+  (4, 1, 'TH202', 18, 'F', '10:00:00', '12:30:00', '222334444');     -- Stage Design - Dr. Bob Lee
+
+-- Insert enrollments
+INSERT INTO enrollments (student_id, section_id, grade)
+VALUES
+  ('S001', 1, 'A'),
+  ('S004', 1, 'B+'),
+  ('S003', 1, 'A-'),
+
+  ('S001', 2, 'B'),
+  ('S005', 2, 'C+'),
+  ('S006', 2, 'A'),
+
+  ('S003', 3, 'A'),
+  ('S004', 3, 'B'),
+  ('S007', 3, 'B-'),
+
+  ('S002', 4, 'A'),
+  ('S006', 4, 'A-'),
+  ('S008', 4, 'B+'),
+
+  ('S002', 5, 'B'),
+  ('S009', 5, 'A'),
+  ('S010', 5, 'C'),
+
+  ('S002', 6, 'A'),
+  ('S005', 6, 'B+'),
+  ('S007', 6, 'A'),
+
+  ('S011', 3, 'A-'),
+  ('S012', 4, 'B+');
+
+-- Prerequisites
+-- Data Structures requires Intro to Programming
+INSERT INTO prerequisites (course_id, prerequisite_id) VALUES (2, 1);
+
+-- Stage Design requires Acting Fundamentals
+INSERT INTO prerequisites (course_id, prerequisite_id) VALUES (4, 3);

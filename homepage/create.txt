@@ -1,0 +1,77 @@
+-- Professors
+CREATE TABLE professors (
+    ssn CHAR(9) PRIMARY KEY,
+    name VARCHAR(100),
+    address VARCHAR(255),
+    telephone VARCHAR(20),
+    sex CHAR(1),
+    title VARCHAR(50),
+    salary DECIMAL(10,2),
+    degrees VARCHAR(100)
+);
+
+-- Departments
+CREATE TABLE departments (
+    department_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    telephone VARCHAR(20),
+    office_location VARCHAR(100),
+    chairperson_ssn CHAR(9),
+    FOREIGN KEY (chairperson_ssn) REFERENCES professors(ssn)
+);
+
+-- Students
+CREATE TABLE students (
+    student_id CHAR(5) PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    address VARCHAR(255),
+    telephone VARCHAR(20),
+    major_department_id INT,
+    FOREIGN KEY (major_department_id) REFERENCES departments(department_id)
+);
+
+-- Courses
+CREATE TABLE courses (
+    course_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100),
+    textbook VARCHAR(255),
+    units INT,
+    department_id INT,
+    FOREIGN KEY (department_id) REFERENCES departments(department_id)
+);
+
+-- Sections
+CREATE TABLE sections (
+    section_id INT AUTO_INCREMENT PRIMARY KEY,
+    course_id INT,
+    section_number INT,
+    classroom VARCHAR(50),
+    num_seats INT,
+    meeting_days VARCHAR(10),
+    start_time TIME,
+    end_time TIME,
+    professor_ssn CHAR(9),
+    FOREIGN KEY (course_id) REFERENCES courses(course_id),
+    FOREIGN KEY (professor_ssn) REFERENCES professors(ssn),
+    UNIQUE (course_id, section_number) -- Ensures uniqueness in a course
+);
+
+-- Enrollments
+CREATE TABLE enrollments (
+    enrollment_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id CHAR(5),
+    section_id INT,
+    grade VARCHAR(2),
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (section_id) REFERENCES sections(section_id)
+);
+
+-- Prerequisites (optional)
+CREATE TABLE prerequisites (
+    course_id INT,
+    prerequisite_id INT,
+    PRIMARY KEY (course_id, prerequisite_id),
+    FOREIGN KEY (course_id) REFERENCES courses(course_id),
+    FOREIGN KEY (prerequisite_id) REFERENCES courses(course_id)
+);
